@@ -1,3 +1,4 @@
 virtual/
 *.pyc
 config.py
+instance/
