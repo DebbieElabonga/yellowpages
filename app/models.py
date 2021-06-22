@@ -2,7 +2,7 @@ from . import db
 from datetime import datetime,timezone
 
 
-class User(UserMixin,db.Model):
+class User(db.Model):
     __tablename__='users'
     id = db.Column(db.Integer,primary_key=True)
     username = db.Column(db.String(255))
@@ -57,7 +57,7 @@ class Business(db.Model):
     @classmethod
     def get_business(cls,user_id):
         businesses = Business.query.filter_by(user_id=user_id).all()
-        return business
+        return Business
 
     def __repr__(self):
        return f'Business {self.businessname}'
