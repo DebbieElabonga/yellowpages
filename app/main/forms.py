@@ -18,5 +18,9 @@ class ReviewForm(FlaskForm):
     review = TextAreaField('Enter your review here..',validators = [Required()])
     submit = SubmitField('Submit')
 
+class SearchForm(FlaskForm):
+    service = TextAreaField('search service',validators = [Required()])
+    submit = SubmitField('Submit')
+
     
 
