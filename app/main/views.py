@@ -1,10 +1,11 @@
 from flask import render_template,request,redirect,url_for,abort
+from flask_wtf import form
 from . import main
 from flask_login import login_required,current_user,login_user,logout_user
-from .forms import UpdateProfile,BusinessForm,ReviewForm
+from .forms import UpdateProfile,BusinessForm,ReviewForm, SearchForm,LocationSearchForm
 from .. import db,photos
 from ..models import User,Business,Review
-
+from app import models
 
 #views
 @main.route('/')
@@ -76,14 +77,33 @@ def upload_business(uname):
         business.save_business()
         return redirect(url_for('main.index'))
     return render_template('upload_business.html',form=form,title='Add Business',legend='Add Business')
+    
+    
+@main.route('/search', methods=['GET', 'POST'])
+def search():
+    searchform = SearchForm()
+    if searchform.validate_on_submit():
+        selectedservice = searchform.service.data
+        businessByService = Business.query.filter_by(service=selectedservice).all()
+        return render_template('results.html',businessByService=businessByService)
+    return render_template('search.html',searchform=searchform,title='Search',legend='Add Business')
 
-@main.route('/user/review/<int:business_id>',methods= ['POST','GET'])
-@login_required
-def review_business(business_id):
-    business = Business.query.filter_by(business_id = business_id).first()
-    form = ReviewForm()
-    
 
-    
-    
-    
+
+@main.route('/location',methods=['GET', 'POST'])
+def location():
+    locationform = LocationSearchForm()
+    if locationform.validate_on_submit():
+        selectedlocation = locationform.location.data
+        businessOnLocation = Business.query.filter_by(location=selectedlocation).all()
+        return render_template('results.html',businessOnLocation=businessOnLocation)
+    return render_template('location.html',locationform=locationform,title='Search',legend='Add Business')
+
+
+# locationform = LocationSearchForm()
+#     if locationform.validate_on_submit():
+#         businesses = Business.query.filter_by().all()
+#         for business in businesses:
+#             if business.location == locationform.location.data:
+#                 return redirect(url_for('main.index',business=business))
+#     return render_template('search.html',locationform=locationform,title='Search',legend='Add Business')

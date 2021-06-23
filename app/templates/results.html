@@ -1,0 +1,9 @@
+{% extends 'base.html'%}
+{% import 'macros.html' as macro%}
+
+{% block content %}
+{{macro.displayResults(businessOnLocation)}}
+
+{{macro.displaySearchResults(businessByService)}}
+
+{% endblock %}
