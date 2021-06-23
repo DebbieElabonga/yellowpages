@@ -5,7 +5,31 @@
     <h2>{{business.businessname}}</h2>
     <p>Number: +254{{business.contact}}</p>
     <p>Service provided: {{business.service}}</p>
+    <p>About: {{business.about}}</p>
     <p>Location: {{business.location}}</p>
     <p>Website: {{business.website}}</p>
 {% endfor %}
+{% endmacro %}
+
+{% macro displayResults(Business)%}
+{% for business in Business%}
+    <h2>{{business.businessname}}</h2>
+    <p>Number: +254{{business.contact}}</p>
+    <p>Service provided: {{business.service}}</p>
+    <p>About: {{business.about}}</p>
+    <p>Location: {{business.location}}</p>
+    <p>Website: {{business.website}}</p>
+{%endfor %}
+
+{% endmacro %}
+
+{% macro displaySearchResults(Business)%}
+{% for business in Business%}
+    <h2>{{business.businessname}}</h2>
+    <p>Number: +254{{business.contact}}</p>
+    <p>Service provided: {{business.service}}</p>
+    <p>About: {{business.about}}</p>
+    <p>Location: {{business.location}}</p>
+    <p>Website: {{business.website}}</p>
+{%endfor %}
 {% endmacro %}
