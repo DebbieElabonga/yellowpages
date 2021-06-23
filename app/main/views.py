@@ -76,3 +76,14 @@ def upload_business(uname):
         business.save_business()
         return redirect(url_for('main.index'))
     return render_template('upload_business.html',form=form,title='Add Business',legend='Add Business')
+
+@main.route('/user/review/<int:business_id>',methods= ['POST','GET'])
+@login_required
+def review_business(business_id):
+    business = Business.query.filter_by(business_id = business_id).first()
+    form = ReviewForm()
+    
+
+    
+    
+    
