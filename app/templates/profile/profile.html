@@ -1,4 +1,5 @@
 {% extends 'base.html'%}
+{% import 'macros.html' as macro%}
 
 {% block content %}
 <div class="container">
@@ -34,4 +35,6 @@
   </div>
 </div>
 </div>
+<h2 style="text-align: center;"><b> <u>Your Current Businesses</u></b> </h2>
+{{macro.displayBusiness(business)}}
 {% endblock %}
