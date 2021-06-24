@@ -1,7 +1,11 @@
-
-
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
 {% macro displayBusiness(Business)%}
-{% for business in Business%}
+{% for business in Business%}              
+    <div class="card mb-4">
+        <div class="card-body">
+
     <h2>{{business.businessname}}</h2>
     <p>Number: +254{{business.contact}}</p>
     <p>Service provided: {{business.service}}</p>
@@ -9,7 +13,9 @@
     <p>Location: {{business.location}}</p>
     <p>Website: {{business.website}}</p>
      <a href="{{url_for('main.reviews',business_id=business.id)}}"><button type="button" class="btn btn-success">Review</button></a><br>
-    
+    </div>
+</div> 
+
 {% endfor %}
 {% endmacro %}
 
@@ -40,8 +46,14 @@
 {% endmacro %}
 
 {% macro displayReviews(all_reviews)%}
+<h1 style="text-align: center;"> My Blogs</h1>
+<ul class="list-index ">
 {% for review in all_reviews%}
+<li class="jumbotron " style="padding-left:40px ; list-style-type: none;">                 
+    <div class="card mb-7 text-white">
+        <div class="card-body">
 <p>{{review.review}}</p>
 {{review.posted.strftime('%Y-%m-%d')}}
+        </div>
 {%endfor%}
 {% endmacro %}
