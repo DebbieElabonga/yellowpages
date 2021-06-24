@@ -2,5 +2,8 @@
 {% import 'macros.html' as macro%}
 
 {% block content %}
-    <h1>{{ business }}</h1>
+{{macro.displayResults(businessOnLocation)}}
+
+{{macro.displaySearchResults(businessByService)}}
+
 {% endblock %}

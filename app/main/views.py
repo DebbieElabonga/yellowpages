@@ -2,7 +2,7 @@ from flask import render_template,request,redirect,url_for,abort
 from flask_wtf import form
 from . import main
 from flask_login import login_required,current_user,login_user,logout_user
-from .forms import UpdateProfile,BusinessForm,ReviewForm, SearchForm
+from .forms import UpdateProfile,BusinessForm,ReviewForm, SearchForm,LocationSearchForm
 from .. import db,photos
 from ..models import User,Business,Review
 from app import models
@@ -77,36 +77,33 @@ def upload_business(uname):
         business.save_business()
         return redirect(url_for('main.index'))
     return render_template('upload_business.html',form=form,title='Add Business',legend='Add Business')
-
-# @main.route('/search', methods=['GET', 'POST'])
-# def search():
-#     cur =db.cursor()
-#     if request.method == "POST":
-#         Business = BusinessForm.form['business']
-#         # search by businessname or name
-#         cur.execute("SELECT businessname, service from Business WHERE businessname 
-#                         LIKE %s OR service LIKE %s", (business, business))
-#         conn.commit()
-#         data = cursor.fetchall()
-#         # all in the search box will return all the tuples
-#         if len(data) == 0 and Business == 'all': 
-#             cursor.execute("SELECT businessname, service from Business")
-#             conn.commit()
-#             data = cursor.fetchall()
-#         return render_template('search.html', data=data)
-#     return render_template('search.html')
-
+    
+    
 @main.route('/search', methods=['GET', 'POST'])
 def search():
-    searchForm = SearchForm()
-    business = models.Business.query
+    searchform = SearchForm()
+    if searchform.validate_on_submit():
+        selectedservice = searchform.service.data
+        businessByService = Business.query.filter_by(service=selectedservice).all()
+        return render_template('results.html',businessByService=businessByService)
+    return render_template('search.html',searchform=searchform,title='Search',legend='Add Business')
 
-    if searchForm.validate_on_submit():
-        businesses = business.filter(models.Business.service.like('%' + searchForm.service.data + '%'))
 
-        business = business.order_by(models.Business.businessname).all()
 
-        return redirect(url_for('main.index'))
-    return render_template('search.html', business = business, form= searchForm)
-    
-    
+@main.route('/location',methods=['GET', 'POST'])
+def location():
+    locationform = LocationSearchForm()
+    if locationform.validate_on_submit():
+        selectedlocation = locationform.location.data
+        businessOnLocation = Business.query.filter_by(location=selectedlocation).all()
+        return render_template('results.html',businessOnLocation=businessOnLocation)
+    return render_template('location.html',locationform=locationform,title='Search',legend='Add Business')
+
+
+# locationform = LocationSearchForm()
+#     if locationform.validate_on_submit():
+#         businesses = Business.query.filter_by().all()
+#         for business in businesses:
+#             if business.location == locationform.location.data:
+#                 return redirect(url_for('main.index',business=business))
+#     return render_template('search.html',locationform=locationform,title='Search',legend='Add Business')
