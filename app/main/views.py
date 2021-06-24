@@ -10,8 +10,18 @@ from app import models
 #views
 @main.route('/')
 def index():
+    search_bs = request.args.get("location")
+    search_service = request.args.get("service")
+    businessOnLocation = Business.query.filter_by(location=search_bs).all()
+    businessByService = Business.query.filter_by(service=search_service).all()
+
+
+    return render_template('index.html',businessOnLocation=businessOnLocation,businessByService=businessByService)
+
+@main.route('/all')
+def all():
     all_business = Business.query.filter_by().all()
-    return render_template('index.html',all_business=all_business)
+    return render_template('all.html',all_business=all_business)
 
 
 @main.route('/user/<uname>')
@@ -75,7 +85,7 @@ def upload_business(uname):
         
         business = Business(businessname=businessname,contact=contact,service=service,location=location,website=website,user_id=user_id)
         business.save_business()
-        return redirect(url_for('main.index'))
+        return redirect(url_for('main.all'))
     return render_template('upload_business.html',form=form,title='Add Business',legend='Add Business')
     
     
@@ -92,12 +102,19 @@ def search():
 
 @main.route('/location',methods=['GET', 'POST'])
 def location():
-    locationform = LocationSearchForm()
-    if locationform.validate_on_submit():
-        selectedlocation = locationform.location.data
-        businessOnLocation = Business.query.filter_by(location=selectedlocation).all()
-        return render_template('results.html',businessOnLocation=businessOnLocation)
-    return render_template('location.html',locationform=locationform,title='Search',legend='Add Business')
+    search_bs = request.args.get("location") 
+    businessOnLocation = Business.query.filter_by(location=search_bs).all()
+    return render_template('results.html',businessOnLocation=businessOnLocation)
+
+
+# @main.route('/location',methods=['GET', 'POST'])
+# def location():
+#     locationform = LocationSearchForm()
+#     if locationform.validate_on_submit():
+#         selectedlocation = locationform.location.data
+#         businessOnLocation = Business.query.filter_by(location=selectedlocation).all()
+#         return render_template('results.html',businessOnLocation=businessOnLocation)
+#     return render_template('location.html',locationform=locationform,title='Search',legend='Add Business')
 
 
 # locationform = LocationSearchForm()
