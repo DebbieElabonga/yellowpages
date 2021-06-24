@@ -2,6 +2,7 @@
 {% import 'macros.html' as macro%}
 
 {% block content %}
+<<<<<<< HEAD
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -45,4 +46,41 @@
         </div>
   
       </div>
+=======
+{{macro.displayBusiness(businessByService)}}
+{{macro.displayBusiness(businessOnLocation)}}
+
+
+<form>
+    <select name = "location">
+        <option selected>Select location</option>
+        <option value = "Nairobi">Nairobi</option>
+        <option value = "Kiambu">Kiambu</option>
+        <option value = "Makueni">Makueni</option>
+        <option value = "Nyandarua">Nyandarua</option>
+        <option value = "Mombasa">Mombasa</option>
+        <option value = "Vihiga">Vihiga</option>
+        
+    </select>
+    <input type="submit" value="Submit" class="btn btn-default">
+ </form>
+ <p>Results for {{search_bs}} County</p>
+
+ <form>
+    <select name = "service">
+        <option selected>Select Service</option>
+        <option value = "Hardware">Hardware</option>
+        <option value = "Health & Beauty">Health & Beauty</option>
+        <option value = "Graphic designer">Graphic designer</option>
+        <option value = "IT Consultant">IT Consultant</option>
+        <option value = "Event Planner">Event Planner</option>
+        <option value = "Education & Learning">Education & Learning</option>
+        <option value = "Sports">Sports</option>
+    </select>
+    <input type="submit" value="Submit" class="btn btn-default">
+
+ </form>
+ 
+ <p>Results for {{search_service}} service</p>
+>>>>>>> filter option added
 {% endblock %}
