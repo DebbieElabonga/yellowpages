@@ -2,6 +2,47 @@
 {% import 'macros.html' as macro%}
 
 {% block content %}
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+{% block styles%}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+    
+{% endblock %}
+<div id="container-fluid">
+
+
+ 
 {{macro.displayBusiness(all_business)}}
 {{business}}
+
+<div class="container">
+    <div class="contacts">
+        <h1>CONTACT US</h1>
+        <div  class="transparent">
+          <form>
+          <label for="name"></label>
+          <input type="text" id="name" name="name" placeholder="Name ...">
+          <label for="lname"></label>
+          <input type="email" id="email" name="email" placeholder="Email ..."><br><br>
+          <textarea name="" id="msg" cols="50" rows="5" placeholder="Your message here..."></textarea> <br>
+          <input type="submit" onclick="clickedSub()" value="Submit">
+      </form>
+    </div>
+    </div>
+    </div>
+        <br>
+      <div class="footer">
+        <div class="footer__social">
+  
+          <a href="#" class="fa fa-facebook"></a>
+          <a href="#" class="fa fa-twitter"></a>
+          <a href="#" class="fa fa-instagram"></a>
+          <a href="#" class="fa fa-pinterest"></a>
+          <a href="#" class="fa fa-snapchat"></a>
+        </div>
+  
+      </div>
 {% endblock %}
