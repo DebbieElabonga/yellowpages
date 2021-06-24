@@ -1,0 +1,11 @@
+{% extends 'base.html'%}
+{% import 'macros.html' as macro%}
+{% import 'bootstrap/wtf.html' as wtf%}
+
+{% block content %}
+<b></b><h3><p>{{business.businessname}}</p><br></h3></b>
+{{macro.displayReviews(all_reviews)}}<b>
+<p>{{wtf.quick_form(review_form)}}</p>
+
+
+{% endblock %}

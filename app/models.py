@@ -65,7 +65,7 @@ class Business(db.Model):
     @classmethod
     def get_business(cls,user_id):
         businesses = Business.query.filter_by(user_id=user_id).all()
-        return Business
+        return businesses
 
     def __repr__(self):
        return f'Business {self.businessname}'
