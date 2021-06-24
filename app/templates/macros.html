@@ -33,3 +33,10 @@
     <p>Website: {{business.website}}</p>
 {%endfor %}
 {% endmacro %}
+
+{% macro displayReviews(all_reviews)%}
+{% for review in all_reviews%}
+<p>{{review.review}}</p>
+{{review.posted.strftime('%Y-%m-%d')}}
+{%endfor%}
+{% endmacro %}
