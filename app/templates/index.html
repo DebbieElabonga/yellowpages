@@ -2,6 +2,7 @@
 {% import 'macros.html' as macro%}
 
 {% block content %}
+<div class = background >
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div id= "container-fluid" style ="overflow: hidden;">
 <div id="container"class= 'home'>
@@ -52,8 +53,9 @@
 </div>
 <br>
 <!-- what we do -->
-<h1 style="text-align: center;">WHAT WE DO</h1>
-      <div class="container-fluid" id="doings">
+
+      <div class="container-fluid" style = "right: auto;"id="doings">
+        <h1 style="text-align: center;">WHAT WE DO</h1>
         <div class="row">
           <div class="col-md-4">
             <div class="noticed-showing">
@@ -92,8 +94,9 @@
       </div>
     </div>
   </div>
+  <br>
 <!-- end of what we do -->
- <div class="container-fluid"style= "background-image:url('./static/img/c_image.jpg');">
+ <div class="container-fluid"style= "background-image:url(./static/img/background.jpg);">
     <div class="contacts">
         <div class="col-md-8 col-lg-8 col-xs-10" style="left: 32%;" >
         <h1 style="color: white;">CONTACT US</h1>
@@ -111,7 +114,6 @@
     </div>
   </div>
   
-        <br>
       <div class="footer">
         <div class="footer__social">
   
@@ -124,6 +126,7 @@
   
       </div>
     </div>
+  </div>
   <style>
   .home {
   background-image:url(./static/img/exploringnairobi.jpg);
@@ -134,10 +137,14 @@
   .footer__social{
     text-align: center;
         }
-  .contacts{
-    background-image:url(./static/img/exploringnairobi.jpg);
-  }
+
+        #doings{
+    padding-right: 10%;
   
+  }
+  .background{
+    background-image:url(./static/img/black.png);
+  }
         </style>
 
 {% endblock %}
